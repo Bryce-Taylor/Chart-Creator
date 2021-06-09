@@ -10,4 +10,6 @@ public class ChartCreatorApplication {
 		SpringApplication.run(ChartCreatorApplication.class, args);
 	}
 
+
+
 }
