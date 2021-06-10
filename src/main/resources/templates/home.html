@@ -2,11 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header's">
     <meta charset="UTF-8" />
-<head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 </head>
-<body>
-<h1>Hey</h1>
+<body class="body-dark">
+<nav id="nav" class="nav-dark ">
+    <a class="a-dark nav-a-dark nav-start" href="#log-in">Log-In</a>
+    <a class="a-dark nav-a-dark nav-start" href="#sign-up">Sign-Up</a>
+    <a class="a-dark nav-a-dark nav-end" href="#create-chart">Create Chart</a>
+</nav>
+
+<div id="welcome-title">
+    <h1 class="header">Chart Checker</h1>
+</div>
+<div class="chart_box_post chart_box_color">
+    <h1 class="header">Charts</h1>
+    <div class="chart-post-grid ">
+        <div class="chart-post-background">
+            <h1>Chart 1</h1>
+        </div>
+        <div class="chart-post-background">
+            <h1>Chart 2</h1>
+        </div>
+        <div class="chart-post-background">
+            <h1>Chart 3</h1>
+        </div>
+        <div class="chart-post-background">
+            <h1>Chart 4</h1>
+        </div>
+    </div>
+</div>
 </body>
 </html>

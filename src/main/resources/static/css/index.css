@@ -1,0 +1,143 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+.body-dark {
+    background-color: #f0fff5;
+    color: rgb(46, 46, 46);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 3rem;
+}
+h2 {
+    font-size: 3.2rem;
+    font-family: "Times New Roman", Times, serif;
+}
+p {
+    font-size: 1.4rem;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-size: 2.4rem;
+}
+
+nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+
+}
+
+.nav-end{
+    margin-left: 1080px ;
+}
+
+.nav-start{
+    margin-left: 20px ;
+}
+
+nav{
+    display: flex;
+    margin-right: 20rem;
+}
+
+
+@media (max-width: 1050px) {
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        margin-right:5rem;
+    }
+}
+
+nav a {
+    display: flex;
+    margin: 9px;
+    font-size: 1.3rem;
+}
+
+.nav-a-dark:hover {
+    background: rgba(2, 255, 86, 0.671);
+    transition: all 0.5s;
+}
+.a-dark{
+    border-radius: 30px;
+    padding: 0.5rem;
+    color: white;
+    background-color: rgb(37, 145, 109);
+    transition: all 0.5s;
+}
+
+.a-chart-button{
+    margin-bottom: 34px;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    padding: 0.5rem;
+    color: white;
+    background-color: rgb(37, 145, 109);
+    transition: all 0.5s;
+}
+
+.nav-dark{
+    background: rgb(26, 179, 107);
+    box-shadow: 0 3px 0 rgba(26, 179, 107, 0.4);
+    transition: all 0.5s;
+}
+
+#welcome-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 2.2rem;
+    display: flex;
+    margin: 20px;
+}
+
+.header {
+    max-width: 540px;
+    margin: 0 auto 1rem auto;
+    font-size: 4rem;
+}
+
+.chart_box_post {
+    border: rgba(15, 109, 65, 0.774) 10px solid;
+    margin: 1.5rem;
+}
+
+.chart_box_color{
+    background: rgba(26, 179, 108, 0.534);
+
+
+}
+
+.chart-post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 4rem;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+}
+
+.chart-post-background{
+    background: rgb(15, 105, 63);
+}
