@@ -88,9 +88,12 @@ nav a {
 }
 
 .a-chart-button{
-    margin-bottom: 34px;
+    margin-left: 10px;
+    margin-bottom: 10px;
     font-size: 1.3rem;
-    border-radius: 30px;
+    border-radius: 20px;
+    border: 3px solid;
+    border-color:#000000;
     padding: 0.5rem;
     color: white;
     background-color: rgb(37, 145, 109);
@@ -124,8 +127,6 @@ nav a {
 
 .chart_box_color{
     background: rgba(26, 179, 108, 0.534);
-
-
 }
 
 .chart-post-grid {

@@ -8,6 +8,7 @@ class ChartCreatorApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
