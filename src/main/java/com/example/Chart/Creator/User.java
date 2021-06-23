@@ -28,6 +28,7 @@ public class User {
     @Column(name = "type_of_role", nullable = false, unique = true)
     private String typeOfRole;
 
+
     public String getTypeOfRole() {
         return typeOfRole;
     }
@@ -83,4 +84,7 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+
+
 }

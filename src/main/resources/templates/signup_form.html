@@ -38,6 +38,22 @@
             </div>
 
             <div class="form-group row">
+                <label class="col-4 col-form-label">Confirm Password: </label>
+                <div class="col-8">
+                    <input name="password_confirm" required="required" type="password" id="password_confirm" oninput="check(this)" class="form-control" />
+                    <script language='javascript' type='text/javascript'>
+                        function check(input) {
+                            if (input.value != document.getElementById('password').value) {
+                                input.setCustomValidity('Password Must be Matching.');
+                            } else {
+                                input.setCustomValidity('');
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
+
+            <div class="form-group row">
                 <label class="col-4 col-form-label">First Name: </label>
                 <div class="col-8">
                     <input type="text" th:field="*{firstName}" class="form-control"
@@ -56,8 +72,9 @@
             <div class="form-group row">
                 <label class="col-4 col-form-label">Role: </label>
                 <div class="col-8">
-                    <input type="radio" id="student" name="typeOfRole" value="Student">
+                    <input type="radio" id="student" name="typeOfRole" value="Student" required>
                     <label for="Student">Student</label>
+                    <br/>
                     <input type="radio" id="teacher" name="typeOfRole" value="Teacher">
                     <label for="Teacher">Teacher</label>
                 </div>

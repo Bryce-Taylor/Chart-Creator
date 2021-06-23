@@ -1,14 +1,35 @@
 package com.example.Chart.Creator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Post {
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String body;
-    private User author;
-    private Date date = new Date();
+
+    private String columnTitle;
+
+    private Date dateCreated;
+
+    @ManyToOne
+    private User creator;
+
+
+
+
+    public Post() {
+    }
 
     public Long getId() {
         return id;
@@ -34,19 +55,29 @@ public class Post {
         this.body = body;
     }
 
-    public User getAuthor() {
-        return author;
+    public String getColumnTitle() {
+        return columnTitle;
     }
 
-    public void setAuthor(User author) {
-        this.author = author;
+    public void setColumnTitle(String columnTitle) {
+        this.columnTitle = columnTitle;
     }
 
-    public Date getDate() {
-        return date;
+
+
+    public User getCreator() {
+        return creator;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
