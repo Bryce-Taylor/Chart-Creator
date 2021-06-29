@@ -1,23 +1,30 @@
 package com.example.Chart.Creator;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
 public class FrameTemplate {
+//    @Autowired
+//    private HttpServletRequest request;
+//
+//    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    String loggedUser=request.getUserPrincipal().getName();
+
     @Autowired
     private PostService postService;
 
+
+
     @Autowired
-    private UserRepository userRepo;
     private CustomUserDetailsService userService;
 
 
@@ -27,9 +34,20 @@ public class FrameTemplate {
     }
 
     @GetMapping("/home")
-    public String getHome() {
-        return "home.html";
+    public String getHome(Model model) {
+        List<Post> listPost = postService.getAllPosts();
+        model.addAttribute("listPosts", listPost);
+        return "home";
     }
+
+    @GetMapping(value="/post_detail/id")
+    public String viewPost(@PathVariable("id") Long id, Model model){
+        Post post = postService.getPost(id).get();
+        model.addAttribute("post", post);
+
+        return "post_detail/id";
+    }
+
 
     @GetMapping("/posts")
     public List<Post> posts(){
@@ -37,11 +55,9 @@ public class FrameTemplate {
     }
 
     @RequestMapping(value="/post_success", method= RequestMethod.POST)
-    public String savePost(@ModelAttribute("post") Post post){
-        if(post.getDateCreated() == null){
-            post.setDateCreated(new Date());
-        }
-       postService.insert(post);
+    public String savePost(@AuthenticationPrincipal CustomUserDetails userDetails , @ModelAttribute("post") Post post){
+        post.setCreator(userDetails.getUser(userDetails.getUsername()));
+        postService.insert(post);
 
         return "redirect:/home";
     }
@@ -68,14 +84,14 @@ public class FrameTemplate {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
-        userRepo.save(user);
+        userService.save(user);
 
         return "register_success";
     }
 
     @GetMapping("/users")
     public String listUsers(Model model) {
-        List<User> listUsers = userRepo.findAll();
+        List<User> listUsers = userService.getAllUsers();
         model.addAttribute("listUsers", listUsers);
 
         return "users";

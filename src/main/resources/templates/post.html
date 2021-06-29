@@ -8,42 +8,45 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div>
-    <h1>Post Chart</h1>
-</div>
-<div>
-<form th:action="@{/post_success}" th:object="${post}"
-      method="post" style="max-width: 600px; margin: 0 auto;">
-    <div class="m-3">
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Title: </label>
-            <div class="col-8">
-                <input type="text" th:field="*{title}" class="form-control" required />
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Column Title: </label>
-            <div class="col-8">
-                <input type="text" th:field="*{columnTitle}" class="form-control"
-                       required minlength="6" maxlength="20"/>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <label class="col-4 col-form-label">Body: </label>
-            <div class="col-8">
-                <input type="text" th:field="*{body}" class="form-control"
-                       required minlength="6" maxlength="255"/>
-            </div>
-        </div>
-
-        <div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
+<div class="container text-center">
+    <div>
+        <h1>Post Chart</h1>
     </div>
-</form>
+    <div>
+    <form th:action="@{/post_success}" th:object="${post}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <div class="m-3">
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Title: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{title}" class="form-control" required />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Column Title: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{columnTitle1}" class="form-control"
+                           required minlength="6" maxlength="20"/>
+                </div>
+                <button id="button" class="button-dark target-button">+ Column Title</button>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-4 col-form-label">Body: </label>
+                <div class="col-8">
+                    <input type="text" th:field="*{body}" class="form-control"
+                           required minlength="6" maxlength="255"/>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </div>
+    </form>
+    </div>
 </div>
 </body>
 </html>

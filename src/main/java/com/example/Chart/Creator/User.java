@@ -2,6 +2,7 @@ package com.example.Chart.Creator;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "users")
 

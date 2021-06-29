@@ -19,21 +19,20 @@
 <div class="chart_box_post chart_box_color">
     <h1 class="header">Charts</h1>
     <div class="chart-post-grid ">
-        <div class="chart-post-background">
-            <h1>Chart 1</h1>
-            <button class="a-chart-button nav-a-dark" href="#create-chart">Check Chart Table</button>
-        </div>
-        <div class="chart-post-background">
-            <h1>Chart 2</h1>
-            <button class="a-chart-button nav-a-dark" href="#create-chart">Check Chart Table</button>
-        </div>
-        <div class="chart-post-background">
-            <h1>Chart 3</h1>
-            <button class="a-chart-button nav-a-dark" href="#create-chart">Check Chart Table</button>
-        </div>
-        <div class="chart-post-background">
-            <h1>Chart 4</h1>
-            <button class="a-chart-button nav-a-dark" href="#create-chart">Check Chart Table</button>
+        <div th:each="post: ${listPosts}" class="chart-post-background">
+            <tbody>
+            <tr th:if="${listPosts.empty}">
+                <td colspan="2"> No Charts Available </td>
+            </tr>
+            <tr>
+                <h3><span th:text="${post.title}"> Title </span></h3>
+                <div class="chart-post-background">
+                    <p><span th:text="${post.body}"> Body </span></p>
+                </div>
+
+            </tr>
+            </tbody>
+            <a class="a-chart-button nav-a-dark" th:href="@{/post_detail/post.id}">Check Chart Table</a>
         </div>
     </div>
 </div>

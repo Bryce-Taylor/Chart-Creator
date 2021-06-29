@@ -1,9 +1,10 @@
 package com.example.Chart.Creator;
 
-import java.util.Collection;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 
 public class CustomUserDetails implements UserDetails {
 
@@ -23,10 +24,17 @@ public class CustomUserDetails implements UserDetails {
         return user.getPassword();
     }
 
-
     @Override
     public String getUsername() {
         return user.getUserName();
+    }
+
+    public User getUser(String username) {
+        return user;
+    }
+
+    public Long getID(){
+        return user.getId();
     }
 
     @Override
