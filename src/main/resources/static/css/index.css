@@ -4,6 +4,13 @@ body {
     font-weight: 400;
     line-height: 1.4;
 }
+
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
 .body-dark {
     background-color: #f0fff5;
     color: rgb(46, 46, 46);
@@ -149,3 +156,8 @@ nav a {
      border: 3px solid black;
      padding: 10px;
 }
+
+.border_padding{
+    padding: 5px;
+}
+

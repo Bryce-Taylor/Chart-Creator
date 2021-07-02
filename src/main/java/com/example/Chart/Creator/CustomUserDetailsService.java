@@ -23,11 +23,32 @@ public class CustomUserDetailsService implements UserDetailsService {
         return new CustomUserDetails(user);
     }
 
+
+    public UserDetails loadUserByUsernameRole(String username) throws UsernameNotFoundException {
+        User user = userRepo.findByRole(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new CustomUserDetails(user);
+    }
+
     public void save(User user) {
         userRepo.save(user);
     }
 
+    public List<User> getAllUsersStudents(){
+        List<User> listStudents = (List<User>) userRepo.findAll();
+
+        listStudents.removeIf(user -> !user.getIsStudent());
+
+        return listStudents;
+    }
+
     public List<User> getAllUsers(){
+        return userRepo.findAll();
+    }
+
+    public List<User> getUser(){
         return userRepo.findAll();
     }
 

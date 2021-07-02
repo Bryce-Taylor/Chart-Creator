@@ -1,19 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>Post</title>
-  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/index.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <script>
+        function
+    </script>
 </head>
 <body class="body-dark">
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 bg-light">
-      <p th:text="$post.title"></p>
-    </div>
-  </div>
+<div th:each="post: ${post}" class="container">
+    <span th:text="${#authentication.name}">Username</span>
+    <h3><span th:text="${post.title}"> Title </span></h3>
+    <form th:action="@{/join_success}" th:object="${checked}"
+          method="post" style="max-width: 600px; margin: 0 auto;">
+        <table border="3">
+            <tr>
+                <td class="border_padding">Students</td>
+                <td class="border_padding" th:text="${post.columnTitle1}">Column Title 1</td>
+            </tr>
+            <tr th:each="user: ${listUsers}">
+                <td class="border_padding" th:text="${user.UserName}">Name</td>
+                <td class="border_padding" th:if="${#authentication.name == user.UserName}"><input type="checkbox" id="${post.columnTitle1}" name="checked" value="${post.columnTitle1}"></td>
+                <td class="border_padding" th:unless="${#authentication.name == user.UserName}"></td>
+            </tr>
+        </table>
+        <div>
+            <button th:name="postId" th:value="${post.id}" type="submit" class="btn btn-primary">Join</button>
+        </div>
+    </form>
 </div>
 </body>
 </html>

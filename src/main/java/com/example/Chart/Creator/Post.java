@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 public class Post {
@@ -12,8 +13,10 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = true, length = 255)
     private String title;
 
+    @Column(nullable = true, length = 255)
     private String body;
 
     private String columnTitle1;
@@ -31,8 +34,6 @@ public class Post {
 
     @ManyToOne(targetEntity = User.class)
     private User creator;
-
-
 
 
     public Post() {
@@ -149,6 +150,7 @@ public class Post {
     public void setCreator(User creator) {
         this.creator = creator;
     }
+
 
 
 //    public Date getDateCreated() {

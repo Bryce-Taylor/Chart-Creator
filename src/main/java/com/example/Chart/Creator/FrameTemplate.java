@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,8 @@ public class FrameTemplate {
     @Autowired
     private PostService postService;
 
-
+    @Autowired
+    private CheckedService checkedService;
 
     @Autowired
     private CustomUserDetailsService userService;
@@ -40,12 +42,15 @@ public class FrameTemplate {
         return "home";
     }
 
-    @GetMapping(value="/post_detail/id")
+    @GetMapping(value="/post_detail/{id}")
     public String viewPost(@PathVariable("id") Long id, Model model){
         Post post = postService.getPost(id).get();
         model.addAttribute("post", post);
 
-        return "post_detail/id";
+        List<User> listUsers = userService.getAllUsersStudents();
+        model.addAttribute("listUsers", listUsers);
+
+        return "post_detail";
     }
 
 
@@ -60,6 +65,21 @@ public class FrameTemplate {
         postService.insert(post);
 
         return "redirect:/home";
+    }
+
+    @RequestMapping(value="/join_success", method= RequestMethod.POST)
+    public String joinTable(@AuthenticationPrincipal CustomUserDetails userDetails ,
+                            @ModelAttribute("checked") Checked checked,
+                            @PathParam(value = "postId") long postId){
+
+
+        checked.setPost(postService.getPost(postId));
+        checked.setUser(userDetails.getUser(userDetails.getUsername()));
+
+        checkedService.save(checked);
+
+
+        return "redirect:/post_detail";
     }
 
     @GetMapping("/post")

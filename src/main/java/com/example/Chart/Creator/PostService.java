@@ -12,6 +12,12 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
+    private Post post;
+
+    public Long getID() {
+        return post.getId();
+    }
+
     public List<Post> getAllPosts(){
         return postRepository.findAll();
     }

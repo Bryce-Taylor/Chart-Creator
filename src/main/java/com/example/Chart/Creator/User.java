@@ -87,5 +87,10 @@ public class User {
     }
 
 
-
+    public boolean getIsStudent() {
+        if(typeOfRole.equals("Student")){
+            return true;
+        }
+        return false;
+    }
 }
