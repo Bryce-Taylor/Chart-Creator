@@ -79,16 +79,17 @@ nav{
 nav a {
     display: flex;
     margin: 9px;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
 }
 
-.nav-a-dark:hover {
+.nav-a-box:hover {
     background: rgba(2, 255, 86, 0.671);
     transition: all 0.5s;
 }
-.a-dark{
-    border-radius: 30px;
+.a-box{
+    border-radius: 20px;
     padding: 0.5rem;
+    padding-right: 20px;
     color: white;
     background-color: rgb(37, 145, 109);
     transition: all 0.5s;
@@ -97,7 +98,7 @@ nav a {
 .a-chart-button{
     margin-left: 10px;
     margin-bottom: 10px;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
     border-radius: 20px;
     border: 3px solid;
     border-color:#000000;

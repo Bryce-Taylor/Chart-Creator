@@ -27,6 +27,9 @@ public class FrameTemplate {
     private CheckedService checkedService;
 
     @Autowired
+    private CheckedRepository checkedRepository;
+
+    @Autowired
     private CustomUserDetailsService userService;
 
 
@@ -43,15 +46,62 @@ public class FrameTemplate {
     }
 
     @GetMapping(value="/post_detail/{id}")
-    public String viewPost(@PathVariable("id") Long id, Model model){
+    public String viewPost(@PathVariable("id") Long id,
+                           Model model,
+                           @AuthenticationPrincipal CustomUserDetails userDetails){
         Post post = postService.getPost(id).get();
         model.addAttribute("post", post);
+        List<Checked> listCheckedUser = checkedService.getAllUsersJoined();
+        model.addAttribute("listCheckedUser", listCheckedUser);
 
-        List<User> listUsers = userService.getAllUsersStudents();
-        model.addAttribute("listUsers", listUsers);
+        User user = userDetails.getUser(userDetails.getUsername());
 
+        for (Checked names: listCheckedUser) {
+            if(user.getUserName().equals(names.getName())&& post == names.post){
+                return "post_detail_edit";
+            }
+        }
         return "post_detail";
     }
+
+//    @RequestMapping(value="/edit_success", method= RequestMethod.POST)
+//    public String saveChecked(@PathParam(value = "id") Long id,
+//                              @AuthenticationPrincipal CustomUserDetails userDetails
+//                              ,@ModelAttribute("checked") Checked checked,
+//                              Model model){
+//        Checked oldcheck = checkedService.get(checked.getId());
+//        System.out.println(oldcheck);
+//        List<Checked> listCheckedUser = checkedService.getAllUsersJoined();
+//        model.addAttribute("listCheckedUser", listCheckedUser);
+//        User user = userDetails.getUser(userDetails.getUsername());
+//
+//
+//
+//        for (Checked userCheck: listCheckedUser) {
+//            if (user.getUserName().equals(userCheck.getName())){
+//                oldcheck.setName(userCheck.getName());
+//                oldcheck.setCheck1(checked.check1);
+//            }
+//        }
+//        checkedService.save(oldcheck);
+//
+//
+//        return "redirect:/home";
+//    }
+
+    @RequestMapping(value="/edit_success", method= RequestMethod.POST)
+    public String saveChecked(Checked newCheck){
+       Optional<Checked> oldCheckOptional = checkedRepository.findByPostId(newCheck.getPostId());
+       if (oldCheckOptional.isPresent()) {
+           Checked oldCheck = oldCheckOptional.get();
+           oldCheck.setCheck1(newCheck.isCheck1());
+           checkedService.save(oldCheck);
+       }
+
+       return "redirect:/home";
+    }
+
+
 
 
     @GetMapping("/posts")
@@ -70,16 +120,22 @@ public class FrameTemplate {
     @RequestMapping(value="/join_success", method= RequestMethod.POST)
     public String joinTable(@AuthenticationPrincipal CustomUserDetails userDetails ,
                             @ModelAttribute("checked") Checked checked,
-                            @PathParam(value = "postId") long postId){
+                            @PathParam(value = "postId") Long postId){
 
+        Optional<Post> possiblePost = postService.getPost(postId);
+        Post post;
 
-        checked.setPost(postService.getPost(postId));
-        checked.setUser(userDetails.getUser(userDetails.getUsername()));
+        if (possiblePost.isPresent()) {
+            post = postService.getPost(postId).get();
+            checked.setPost(post);
+            checked.setUser(userDetails.getUser(userDetails.getUsername()));
+            checked.setJoined(true);
+            checked.setName(userDetails.getUsername());
 
-        checkedService.save(checked);
+            checkedService.save(checked);
+        }
 
-
-        return "redirect:/post_detail";
+        return "redirect:/home";
     }
 
     @GetMapping("/post")

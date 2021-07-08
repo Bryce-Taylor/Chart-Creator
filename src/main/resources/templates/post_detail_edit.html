@@ -1,34 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"><head>
     <meta charset="UTF-8">
     <title>Post</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/css/index.css"/>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-
 </head>
 <body class="body-dark">
 <div th:each="post:${post}" class="container">
     <span th:text="${#authentication.name}">Username</span>
     <h3><span th:text="${post.title}"> Title </span></h3>
-    <form th:action="@{/join_success}" th:object="${checked}"
+    <form th:action="@{/edit_success}" th:object="${checked}"
           method="post" style="max-width: 600px; margin: 0 auto;">
         <table border="3">
             <tr>
                 <td class="border_padding">Students</td>
                 <td class="border_padding" th:text="${post.columnTitle1}">Column Title 1</td>
-
             </tr>
             <tr th:each="checked: ${listCheckedUser}" th:if="${checked.post == post}">
-                <td class="border_padding" th:text="${checked.name}">Name</td>
-                <td class="border_padding" th:if="${#authentication.name == checked.name}"><input type="checkbox" th:field="*{check1}"></td>
+                <td class="border_padding" name="name" th:text="${checked.name}">Name</td>
+                <td class="border_padding" th:if="${#authentication.name == checked.name}">
+                    <input type="checkbox" name="check1" th:checked="${check1}" modelAttribute="checked">
+                </td>
                 <td class="border_padding" th:unless="${#authentication.name == checked.name}"></td>
             </tr>
         </table>
         <div>
-            <button th:name="postId" th:value="${post.id}" type="submit" class="btn btn-primary">Join</button>
+            <button th:name="postId" th:value="${post.id}" type="submit" class="btn btn-primary">Edit</button>
         </div>
     </form>
 </div>

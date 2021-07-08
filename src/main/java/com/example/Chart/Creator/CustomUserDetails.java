@@ -8,6 +8,7 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
 
     private User user;
+    private Checked checked;
 
     public CustomUserDetails(User user) {
         this.user = user;
@@ -30,6 +31,10 @@ public class CustomUserDetails implements UserDetails {
 
     public User getUser(String username) {
         return user;
+    }
+
+    public boolean getJoined(){
+        return checked.joined;
     }
 
     public Long getID(){

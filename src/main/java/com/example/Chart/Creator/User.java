@@ -26,8 +26,9 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
-    @Column(name = "type_of_role", nullable = false, unique = true)
+    @Column(name = "type_of_role", nullable = false)
     private String typeOfRole;
+
 
 
     public String getTypeOfRole() {
@@ -86,11 +87,10 @@ public class User {
         this.userName = userName;
     }
 
-
     public boolean getIsStudent() {
-        if(typeOfRole.equals("Student")){
-            return true;
-        }
-        return false;
+        return typeOfRole.equals("Student");
     }
+
+
+
 }
