@@ -6,13 +6,13 @@
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="/css/index.css"/>
 </head>
-<body class="body-dark">
+<body class="body-background">
 <nav id="nav" class="nav-dark ">
     <a class="a-box nav-a-box nav-start" th:href="@{/}">Main Page</a>
-    <a class="a-box nav-a-box nav-start" th:href="@{/logout}">Log Out</a>
     <a class="a-box nav-a-box nav-end" th:href="@{/post}">Create Chart</a>
+    <a class="a-box nav-a-box nav-start" th:href="@{/logout}">Log Out</a>
 </nav>
-
+<h4 style="padding-top: 2rem;"> Logged-in as : <span th:text="${#authentication.name}"class="login-username">Username</span></h4>
 <div id="welcome-title">
     <h1 class="header">Chart Checker</h1>
 </div>

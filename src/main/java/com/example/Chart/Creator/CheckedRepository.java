@@ -18,6 +18,9 @@ public interface CheckedRepository extends JpaRepository<Checked, Long> {
 
     List<Checked> findByName(String user);
 
-    Optional<Checked> findByPostId(Long id);
+    List<Checked> findByPostId(Long id);
+
+//    @Query("SELECT c FROM Checked c WHERE c.post_id = ?1 AND c.user_id = ?2")
+//    Checked findByPostIdAndUserId(Long postId, Long userId);
 
 }

@@ -28,33 +28,20 @@ public class Checked {
     @Column(name = "joined", nullable = false, length = 20)
     boolean joined = false;
 
-    @Column(name = "check1", length = 20)
+    @Column(name = "check1")
     boolean check1;
-    @Column(name = "check2", length = 20)
+    @Column(name = "check2")
     boolean check2;
-    @Column(name = "check3", length = 20)
-    boolean check3 = false;
+    @Column(name = "check3")
+    boolean check3;
 
-    @Column(name = "check4", length = 20)
-    boolean check4 = false;
+    @Column(name = "check4")
+    boolean check4;
 
-    @Column(name = "check5", length = 20)
-    boolean check5 = false;
+    @Column(name = "check5")
+    boolean check5;
 
-    @Column(name = "check6", length = 20)
-    boolean check6 = false;
 
-    @Column(name = "check7", length = 20)
-    boolean check7 = false;
-
-    @Column(name = "check8", length = 20)
-    boolean check8 = false;
-
-    @Column(name = "check9", length = 20)
-    boolean check9 = false;
-
-    @Column(name = "check10", length = 20)
-    boolean check10 = false;
 
 
     public boolean getIsJoined() {
@@ -151,43 +138,5 @@ public class Checked {
         this.check5 = check5;
     }
 
-    public boolean isCheck6() {
-        return check6;
-    }
 
-    public void setCheck6(boolean check6) {
-        this.check6 = check6;
-    }
-
-    public boolean isCheck7() {
-        return check7;
-    }
-
-    public void setCheck7(boolean check7) {
-        this.check7 = check7;
-    }
-
-    public boolean isCheck8() {
-        return check8;
-    }
-
-    public void setCheck8(boolean check8) {
-        this.check8 = check8;
-    }
-
-    public boolean isCheck9() {
-        return check9;
-    }
-
-    public void setCheck9(boolean check9) {
-        this.check9 = check9;
-    }
-
-    public boolean isCheck10() {
-        return check10;
-    }
-
-    public void setCheck10(boolean check10) {
-        this.check10 = check10;
-    }
 }

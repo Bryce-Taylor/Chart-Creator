@@ -24,11 +24,7 @@ public class Post {
     private String columnTitle3;
     private String columnTitle4;
     private String columnTitle5;
-    private String columnTitle6;
-    private String columnTitle7;
-    private String columnTitle8;
-    private String columnTitle9;
-    private String columnTitle10;
+
 
 
 
@@ -103,45 +99,6 @@ public class Post {
         this.columnTitle5 = columnTitle5;
     }
 
-    public String getColumnTitle6() {
-        return columnTitle6;
-    }
-
-    public void setColumnTitle6(String columnTitle6) {
-        this.columnTitle6 = columnTitle6;
-    }
-
-    public String getColumnTitle7() {
-        return columnTitle7;
-    }
-
-    public void setColumnTitle7(String columnTitle7) {
-        this.columnTitle7 = columnTitle7;
-    }
-
-    public String getColumnTitle8() {
-        return columnTitle8;
-    }
-
-    public void setColumnTitle8(String columnTitle8) {
-        this.columnTitle8 = columnTitle8;
-    }
-
-    public String getColumnTitle9() {
-        return columnTitle9;
-    }
-
-    public void setColumnTitle9(String columnTitle9) {
-        this.columnTitle9 = columnTitle9;
-    }
-
-    public String getColumnTitle10() {
-        return columnTitle10;
-    }
-
-    public void setColumnTitle10(String columnTitle10) {
-        this.columnTitle10 = columnTitle10;
-    }
 
     public User getCreator() {
         return creator;

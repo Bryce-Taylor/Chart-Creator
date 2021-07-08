@@ -11,7 +11,7 @@ td {
 }
 
 
-.body-dark {
+.body-background {
     background-color: #f0fff5;
     color: rgb(46, 46, 46);
 }
@@ -51,15 +51,18 @@ nav {
     left: 0;
     width: 100%;
     z-index: 200;
-
 }
 
 .nav-end{
     margin-left: 1080px ;
 }
-
 .nav-start{
-    margin-left: 20px ;
+    margin-left: 120px ;
+}
+
+.login-username{
+    margin: auto;
+    padding: 3px;
 }
 
 nav{
@@ -88,8 +91,8 @@ nav a {
 }
 .a-box{
     border-radius: 20px;
+    margin: 4px;
     padding: 0.5rem;
-    padding-right: 20px;
     color: white;
     background-color: rgb(37, 145, 109);
     transition: all 0.5s;
@@ -117,7 +120,7 @@ nav a {
 #welcome-title {
     display: flex;
     justify-content: center;
-    padding-top: 2.2rem;
+    padding-top: 1.2rem;
     display: flex;
     margin: 20px;
 }

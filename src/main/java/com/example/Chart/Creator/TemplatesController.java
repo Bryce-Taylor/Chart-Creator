@@ -1,5 +1,6 @@
 package com.example.Chart.Creator;
 
+import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 
-@Controller
-public class FrameTemplate {
+@org.springframework.stereotype.Controller
+public class TemplatesController {
 //    @Autowired
 //    private HttpServletRequest request;
 //
@@ -90,11 +91,18 @@ public class FrameTemplate {
 //    }
 
     @RequestMapping(value="/edit_success", method= RequestMethod.POST)
-    public String saveChecked(Checked newCheck){
-       Optional<Checked> oldCheckOptional = checkedRepository.findByPostId(newCheck.getPostId());
-       if (oldCheckOptional.isPresent()) {
-           Checked oldCheck = oldCheckOptional.get();
+    public String saveChecked(@AuthenticationPrincipal CustomUserDetails userDetails, Checked newCheck,@PathParam(value = "postId") Long postId){
+       List<Checked> listOldChecks = checkedRepository.findByPostId(newCheck.getPostId());
+       listOldChecks.removeIf(checked -> checked.getUser().getId() != userDetails.getID());
+
+       Checked oldCheck = listOldChecks.get(0);
+
+       if (oldCheck != null) {
            oldCheck.setCheck1(newCheck.isCheck1());
+           oldCheck.setCheck2(newCheck.isCheck2());
+           oldCheck.setCheck3(newCheck.isCheck3());
+           oldCheck.setCheck4(newCheck.isCheck4());
+           oldCheck.setCheck5(newCheck.isCheck5());
            checkedService.save(oldCheck);
        }
 
@@ -140,7 +148,12 @@ public class FrameTemplate {
 
     @GetMapping("/post")
     public String publishPost(Model model) {
-        model.addAttribute("post", new Post());
+        Post post = new Post();
+        post.setColumnTitle2("N/A");
+        post.setColumnTitle3("N/A");
+        post.setColumnTitle4("N/A");
+        post.setColumnTitle5("N/A");
+        model.addAttribute("post", post);
         return "post";
     }
 //    @GetMapping(value="/the_post/{id}")

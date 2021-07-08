@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"><head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8">
     <title>Post</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
@@ -7,23 +8,63 @@
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body class="body-dark">
+<body class="body-background">
+<nav id="nav" class="nav-dark ">
+    <a class="a-box nav-a-box nav-start" th:href="@{/home}">Home Page</a>
+    <a class="a-box nav-a-box nav-end" th:href="@{/post}">Create Chart</a>
+    <a class="a-box nav-a-box nav-start" th:href="@{/logout}">Log Out</a>
+</nav>
 <div th:each="post:${post}" class="container">
-    <span th:text="${#authentication.name}">Username</span>
-    <h3><span th:text="${post.title}"> Title </span></h3>
+    <h5 style="padding-top: 3rem;"> Logged-in as : <span th:text="${#authentication.name}"class="login-username">Username</span></h5>
     <form th:action="@{/edit_success}" th:object="${checked}"
-          method="post" style="max-width: 600px; margin: 0 auto;">
+          method="post" style="max-width: 600px; margin: 0 auto; padding-top: 3rem;">
+        <h3><span th:text="${post.title}" > Title </span></h3>
         <table border="3">
             <tr>
                 <td class="border_padding">Students</td>
                 <td class="border_padding" th:text="${post.columnTitle1}">Column Title 1</td>
+                <td class="border_padding" th:text="${post.columnTitle2}">Column Title 2</td>
+                <td class="border_padding" th:text="${post.columnTitle3}">Column Title 3</td>
+                <td class="border_padding" th:text="${post.columnTitle4}">Column Title 4</td>
+                <td class="border_padding" th:text="${post.columnTitle5}">Column Title 5</td>
             </tr>
             <tr th:each="checked: ${listCheckedUser}" th:if="${checked.post == post}">
                 <td class="border_padding" name="name" th:text="${checked.name}">Name</td>
                 <td class="border_padding" th:if="${#authentication.name == checked.name}">
                     <input type="checkbox" name="check1" th:checked="${check1}" modelAttribute="checked">
                 </td>
-                <td class="border_padding" th:unless="${#authentication.name == checked.name}"></td>
+                <td class="border_padding" th:unless="${#authentication.name == checked.name}">
+                    <p th:if="${checked.check1}">yes</p>
+                    <p th:unless="${checked.check1}">no</p>
+                </td>
+                <td class="border_padding" th:if="${#authentication.name == checked.name}">
+                    <input type="checkbox" name="check2" th:checked="${check2}" modelAttribute="checked">
+                </td>
+                <td class="border_padding" th:unless="${#authentication.name == checked.name}">
+                    <p th:if="${checked.check2}">yes</p>
+                    <p th:unless="${checked.check2}">no</p>
+                </td>
+                <td class="border_padding" th:if="${#authentication.name == checked.name}">
+                    <input type="checkbox" name="check3" th:checked="${check3}" modelAttribute="checked">
+                </td>
+                <td class="border_padding" th:unless="${#authentication.name == checked.name}">
+                    <p th:if="${checked.check3}">yes</p>
+                    <p th:unless="${checked.check3}">no</p>
+                </td>
+                <td class="border_padding" th:if="${#authentication.name == checked.name}">
+                    <input type="checkbox" name="check4" th:checked="${check4}" modelAttribute="checked">
+                </td>
+                <td class="border_padding" th:unless="${#authentication.name == checked.name}">
+                    <p th:if="${checked.check4}">yes</p>
+                    <p th:unless="${checked.check4}">no</p>
+                </td>
+                <td class="border_padding" th:if="${#authentication.name == checked.name}">
+                    <input type="checkbox" name="check5" th:checked="${check5}" modelAttribute="checked">
+                </td>
+                <td class="border_padding" th:unless="${#authentication.name == checked.name}">
+                    <p th:if="${checked.check5}">yes</p>
+                    <p th:unless="${checked.check5}">no</p>
+                </td>
             </tr>
         </table>
         <div>
