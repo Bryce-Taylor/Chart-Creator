@@ -10,7 +10,7 @@
 <nav id="nav" class="nav-dark ">
     <a class="a-box nav-a-box nav-start" th:href="@{/}">Main Page</a>
     <a class="a-box nav-a-box nav-end" th:href="@{/post}">Create Chart</a>
-    <a class="a-box nav-a-box nav-start" th:href="@{/logout}">Log Out</a>
+    <a class="a-box nav-a-box nav-start" th:href="@{/logout}" style="margin-left: 72pc;">Log Out</a>
 </nav>
 <h4 style="padding-top: 2rem;"> Logged-in as : <span th:text="${#authentication.name}"class="login-username">Username</span></h4>
 <div id="welcome-title">
@@ -19,14 +19,14 @@
 <div class="chart_box_post chart_box_color">
     <h1 class="header">Charts</h1>
     <div class="chart-post-grid ">
-        <div th:each="post: ${listPosts}" class="chart-post-background">
+        <div th:each="post: ${listPosts}" class="chart-post-background" style="border-radius: 12px;">
             <tbody>
             <tr th:if="${listPosts.empty}">
                 <td colspan="2"> No Charts Available </td>
             </tr>
             <tr>
-                <h3><span th:text="${post.title}"> Title </span></h3>
-                <div class="chart-post-background">
+                <h3><span th:text="${post.title}" style="color: #eef1ee; margin: 18px;"> Title </span></h3>
+                <div class="chart-post-background container" style="background-color: #a6eca6; margin: 20px; padding-bottom: 1px; border-radius: 5px; ">
                     <p><span th:text="${post.body}"> Body </span></p>
                 </div>
 

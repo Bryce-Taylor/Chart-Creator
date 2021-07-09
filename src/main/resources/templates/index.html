@@ -9,7 +9,7 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body class="body-background">
-<div class="center">
+<div class="center" style="margin-top: 5pc;">
     <div class="container text-center ">
         <div sec:authorize="isAuthenticated()">
             <h1>Welcome to Chart Creator - [[${#request.userPrincipal.principal.fullName}]]</h1>
